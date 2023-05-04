@@ -1,0 +1,17 @@
+
+依赖关系
+objdump -p ./.hmos_build/libhello_library.so | grep NEED
+  NEEDED       libc++_shared.so
+  NEEDED       libc.so
+
+
+推包：
+hdc shell mount -o rw,remount /
+hdc file send ./.hmos_build/libhello_library.so /system/lib64/
+hdc file send ./.hmos_build/hello_binary /system/bin
+
+执行
+hdc shell
+# chmod 755 system/bin/hello_binary
+# /system/bin/hello_binary                                                     
+Hello Shared Library!
